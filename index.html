@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Tool Integration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">Company CRM</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Dashboard</a></li>
+                    <li><a href="#">Customers</a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <span>John Doe</span>
+            </div>
+        </header>
+        
+        <main>
+            <div class="sidebar">
+                <ul>
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Tasks</a></li>
+                    <li><a href="#" class="active">Vendor Tool</a></li>
+                    <li><a href="#">Analytics</a></li>
+                </ul>
+            </div>
+            
+            <div class="content">
+                <h1>Vendor Tool Integration</h1>
+                <div class="iframe-comparison">
+                    <div class="iframe-column">
+                        <h2>Standard Iframe</h2>
+                        <p>Without reverse proxy (may fail with X-Frame-Options)</p>
+                        <div class="vendor-tool-container" id="standard-container">
+                            <div class="iframe-placeholder" id="standard-iframe">
+                                <div class="loading-indicator">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="iframe-column">
+                        <h2>Proxy-Enabled Iframe</h2>
+                        <p>Using reverse proxy (bypasses X-Frame-Options)</p>
+                        <div class="vendor-tool-container" id="proxy-container">
+                            <iframe src="https://app.ezlynx.com/web/account/91492473/overview" id="ezlynx-iframe" style="width: 100%; height: 500px; border: none;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Company CRM - Prototype</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
