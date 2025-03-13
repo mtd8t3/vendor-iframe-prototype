@@ -39,17 +39,17 @@
                     <div class="iframe-column">
                         <h2>Standard Iframe</h2>
                         <p>Without reverse proxy (may fail with X-Frame-Options)</p>
+                        <button onclick="document.getElementById('direct-iframe').src = document.getElementById('direct-iframe').src" style="margin-bottom: 10px; padding: 5px 10px;">Refresh Direct Iframe</button>
                         <div class="vendor-tool-container" id="standard-container">
-                            <div class="iframe-placeholder" id="standard-iframe">
-                                <div class="loading-indicator">Loading...</div>
-                            </div>
+                            <iframe src="https://app.ezlynx.com/web/account/91492473/overview" id="direct-iframe" style="width: 100%; height: 600px; border: none;" loading="eager"></iframe>
                         </div>
                     </div>
                     <div class="iframe-column">
                         <h2>Proxy-Enabled Iframe</h2>
                         <p>Using reverse proxy (bypasses X-Frame-Options)</p>
+                        <button onclick="document.getElementById('ezlynx-iframe').src = document.getElementById('ezlynx-iframe').src" style="margin-bottom: 10px; padding: 5px 10px;">Refresh Proxy Iframe</button>
                         <div class="vendor-tool-container" id="proxy-container">
-                            <iframe src="https://app.ezlynx.com/web/account/91492473/overview" id="ezlynx-iframe" style="width: 100%; height: 500px; border: none;"></iframe>
+                            <iframe src="/proxy/auth/account/login" id="ezlynx-iframe" style="width: 100%; height: 600px; border: none;" loading="eager" allow="fullscreen"></iframe>
                         </div>
                     </div>
                 </div>
