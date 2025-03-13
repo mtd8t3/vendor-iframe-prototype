@@ -1,51 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Function to create and load an iframe
-    function loadIframe(containerId, useProxy) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        
-        // Clear the placeholder content
-        container.innerHTML = '';
-        
-        // Create iframe element
-        const iframe = document.createElement('iframe');
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.border = 'none';
-        
-        // Determine which source to use based on useProxy flag
-        if (useProxy) {
-            // Use the proxy server path with specific EZLynx account path
-            iframe.src = '/proxy/web/account/91492473/overview';
-            console.log(`Loading EZLynx account through proxy server in ${containerId}...`);
-        } else {
-            // Use the placeholder content (for demo purposes)
-            iframe.src = 'iframe-content.html';
-            console.log(`Loading placeholder content in ${containerId}...`);
+    console.log('Document loaded - iframe controls initialized');
+    
+    // Monitor iframe loading status
+    function monitorIframe(iframeId) {
+        const iframe = document.getElementById(iframeId);
+        if (!iframe) {
+            console.warn(`Iframe with ID ${iframeId} not found`);
+            return;
         }
         
-        // Add loading indicator
-        const loadingIndicator = document.createElement('div');
-        loadingIndicator.className = 'loading-indicator';
-        loadingIndicator.innerText = 'Loading...';
-        container.appendChild(loadingIndicator);
-        
-        // Add the iframe to the container
-        container.appendChild(iframe);
-        
-        // Remove loading indicator when iframe loads
+        // Log when iframe loads successfully
         iframe.onload = function() {
-            const indicator = container.querySelector('.loading-indicator');
-            if (indicator) indicator.remove();
+            console.log(`Iframe ${iframeId} loaded successfully`);
         };
         
         // Handle iframe loading errors
         iframe.onerror = function() {
-            container.innerHTML = '<div class="error-message">Error loading content. Please check the console for details.</div>';
+            console.error(`Error loading iframe ${iframeId}`);
+            const container = iframe.parentElement;
+            container.innerHTML += '<div class="error-message">Error loading content. Please check the console for details.</div>';
         };
     }
     
-    // Automatically load both iframes when the page loads
-    loadIframe('standard-iframe', false);  // Standard iframe without proxy
-    loadIframe('proxy-iframe', true);      // Proxy-enabled iframe
+    // Monitor both iframes
+    monitorIframe('standard-iframe');
+    monitorIframe('ezlynx-iframe');
+
+    // Add functionality to refresh buttons if needed in the future
+    // This is commented out as we're using direct iframes in the HTML now
+    /*
+    document.getElementById('refresh-standard').addEventListener('click', function() {
+        const iframe = document.getElementById('standard-iframe');
+        if (iframe) iframe.src = iframe.src;
+    });
+    
+    document.getElementById('refresh-proxy').addEventListener('click', function() {
+        const iframe = document.getElementById('ezlynx-iframe');
+        if (iframe) iframe.src = iframe.src;
+    });
+    */
 });
